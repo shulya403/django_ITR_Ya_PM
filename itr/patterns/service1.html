@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block service %}
+<table  cellpadding="10"> <!-- ОГЛАВЛЕНИЕ КАТЕГОРИЙ -->
+<tr>
+
+    {% for i, j in Dict_Cat.items %}
+        <td>
+            <a href="/cat/{{ i }}">{{ j }} </a>
+        </td>
+
+    {% endfor %}
+
+
+</tr></table>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block service %}
+
+    <form action="" method="get">
+        <input type="text" name="nsymbol">
+        <input type="submit" value="search">
+    </form>
+
+    {%  if Name_ %}
+        <p>C буквой <i>"{{ Symbol_ }}"</i> тут есть вот чо:</p>
+        {% for i in Name_ %}
+        <li>{{ i.name }}</li>
+        {% endfor %}
+    {% else %}
+        <p>Пока ничо</p>
+    {% endif %}
+
+
+{% endblock %}

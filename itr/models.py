@@ -118,6 +118,9 @@ class DjangoSession(models.Model):
 
 
 class Mnt(models.Model):
+
+    discription = 'Мониторы'
+
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=200)  # Field name made lowercase.
     screen_size = models.CharField(db_column='Screen_size', max_length=45, blank=True, null=True)  # Field name made lowercase.
@@ -128,6 +131,9 @@ class Mnt(models.Model):
 
 
 class Nb(models.Model):
+
+    discription = 'Ноутбуки'
+
     name = models.CharField(db_column='Name', primary_key=True, max_length=200)  # Field name made lowercase.
     screen_size = models.CharField(db_column='Screen_size', max_length=45, blank=True, null=True)  # Field name made lowercase.
     video_conf = models.CharField(db_column='Video_conf', max_length=45, blank=True, null=True)  # Field name made lowercase.
@@ -138,8 +144,14 @@ class Nb(models.Model):
         db_table = 'nb'
 
 class Prices(models.Model):
+
+    cat_runame = (
+        ('NB', 'Ноутбук'),
+        ('MNT', 'Монитор'),
+    )
+
     avg_price = models.IntegerField(db_column='Avg_price', blank=True, null=True)  # Field name made lowercase.
-    category = models.CharField(db_column='Category', max_length=3, blank=True, null=True)  # Field name made lowercase.
+    category = models.CharField(db_column='Category', max_length=3, blank=True, null=True, choices=cat_runame)  # Field name made lowercase.
     date = models.DateField(db_column='Date', blank=True, null=True)  # Field name made lowercase.
     quantaty = models.IntegerField(db_column='Quantaty', blank=True, null=True)  # Field name made lowercase.
     vendor = models.CharField(db_column='Vendor', max_length=45, blank=True, null=True)  # Field name made lowercase.
@@ -149,3 +161,7 @@ class Prices(models.Model):
     class Meta:
         managed = False
         db_table = 'prices'
+
+dict_models = {
+    'Мониторы': Mnt,
+    'Ноутбуки': Nb}

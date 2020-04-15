@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Прайс-монторинг. Компьютерная техника</title>
+</head>
+<body>
+<table border="1" cellpadding="5" style="border-collapse: collapse; border: #205067">
+<tr> <!-- ШАПКА -->
+    {% block head %}{% endblock %}
+</tr>
+<tr>
+    <td width="200"> <!-- ЛЕВОЕ МЕНЮ -->
+        {% block left %}{% endblock %}
+    </td>
+    <td> <!-- СЕРВИС -->
+    <h1>Средние цены на продукты</h1>
+        {% block service %}{% endblock %}
+    </td>
+    <td width="200"><!-- РЕКЛАМА -->
+        {% block right %}{% endblock %}
+    </td>
+</tr>
+<tr> <!- ФУТЕР >
+{% block footer %}{% endblock %}
+</tr>
+
+</table>
+</body></html>
