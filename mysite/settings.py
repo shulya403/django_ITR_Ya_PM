@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+GOOGLECHARTS_API = '1.1'
+
 DATABASE_ROUTERS = ['mysite.db_router.ItrRouter']
 
 MIDDLEWARE = [
