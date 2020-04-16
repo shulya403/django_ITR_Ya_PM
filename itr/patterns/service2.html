@@ -15,6 +15,31 @@
 <hr>
     {{ Category }}
 
+<!-- таблица средних цен -->
+<table border="1" cellpadding="7" style="border-collapse: collapse">
+<tr>
+<th></th>
+    {% for col in Dates %}
+        <th>{{ col|date:"b-y" }}</th>
+    {% endfor %}
+</tr>
+    {% for vendor, prices in Result_Avg.items %}
+        <tr>
+            <td>
+            {{ vendor }}
+            </td>
+            {% for prc in prices %}
+            <td>
+            {{ prc }}
+            </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+
+
+</table>
+
 {% endblock %}
 {% block left %}
     {% for i in Fields %}
