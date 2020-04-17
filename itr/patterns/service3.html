@@ -6,67 +6,63 @@
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {packages: ['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            // Define the chart to be drawn.
-            var data = new google.visualization.DataTable();
-
-            //Data Load
-
-            data.addColumn('date', 'Month');
-            {% for ven in Result_Avg.keys %}
-                data.addColumn('number', {{ ven }})
-            {% endfor %}
-                data.addRows([
-            {% for mth, prices in Result_Avg.items %}
-                [{{ vendor }}{% for i in prc %},{{ i }}{% endfor %}]
-            {% endfor %}
-                ]);
-
-            //Chart
-                var chart = new google.visualization.LineChart(document.getElementById('Avg_price_chart'));
-      chart.draw(data, null);
-
-        }
+      function drawChart() {
 
 
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Month');
+          {% for ven in Col %}
+          data.addColumn('number', '{{ ven }}')
+          {% endfor %}
+          data.addRows([
+              {% for mth, prc in Result_Avg.items %}
+                  ['{{ mth|date:"b-y"}}'{% for i in prc %}, {% if not i %}NaN{% else %}{{ i }}{% endif %}{% endfor %}],
+              {% endfor %}
+          ]);
+
+        var options = {
+          title: 'Средние цены по данным Ya-M',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
     </script>
-
 </head>
 <body>
 
-</body>
-</html>
-
-
-
-
-
-{% block service %}
-<table  cellpadding="10"> <!-- ОГЛАВЛЕНИЕ КАТЕГОРИЙ -->
+<table  cellpadding="10"> <!-- оглавление категорий -->
 <tr>
 
     {% for i, j in Dict_Cat.items %}
         <td>
-            <a href="/cat/{{ i }}">{{ j }} </a>
+            <a href="/cat/{{ i }}/{{ Fmt }}">{{ j }} </a>
         </td>
-
     {% endfor %}
 
 </tr></table>
 <hr>
     {{ Category }}
+<table>
+    <tr>
+        <td>^-Графично^^</td><td><a href="/cat/{{ Cat }}/T">--Таблично--</a>a</td>
+    </tr>
+</table>
 
 <!-- график средних цен -->
 
+Графег
 
-{% endblock %}
-{% block left %}
-    {% for i in Fields %}
-        <li>{{ i }}</li>
+<div id="curve_chart" style="width: 900px; height: 500px"></div>
 
-    {% endfor %}
-{% endblock %}
+
+</body>
+</html>
 
