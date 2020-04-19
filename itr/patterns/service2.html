@@ -1,28 +1,9 @@
 {% extends "base.html" %}
 
 {% block service %}
-<table  cellpadding="10"> <!-- ОГЛАВЛЕНИЕ КАТЕГОРИЙ -->
-<tr>
-
-    {% for i, j in Dict_Cat.items %}
-        <td>
-            <a href="/cat/{{ i }}/{{ Fmt }}">{{ j }} </a>
-        </td>
-
-    {% endfor %}
-
-</tr></table>
-<hr>
-    {{ Category }}
-
-    Таблица
-    <table>
-    <tr>
-        <td><a href="/cat/{{ Cat }}/G">^-Графично^^</a></td><td>--Таблично--</td>
-    </tr>
-</table>
 
 <!-- таблица средних цен -->
+    <i>* Все данные без фильтрации и отсечений</i>
 <table border="1" cellpadding="7" style="border-collapse: collapse">
 <tr>
 <th></th>
@@ -44,15 +25,14 @@
     {% endfor %}
 </table>
 
-
-</table>
-
 {% endblock %}
+
 {% block left %}
     {% for i in Fields %}
         <li>{{ i }}</li>
 
     {% endfor %}
 {% endblock %}
+
 
 

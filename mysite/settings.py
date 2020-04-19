@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
+#    'polls.apps.PollsConfig',
     'itr.apps.ItrConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,15 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-GOOGLECHARTS_API = '1.1'
-
-DATABASE_ROUTERS = ['mysite.db_router.ItrRouter']
+#DATABASE_ROUTERS = ['mysite.db_router.ItrRouter']
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -97,14 +95,14 @@ if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
     DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.mysql',
+#            'HOST': '/cloudsql/dj-gae-sample:us-central1:polls-instance',
+#            'USER': 'shulya403',
+#            'PASSWORD': '1qazxsw2',
+#            'NAME': 'polls',
+#        },
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/dj-gae-sample:us-central1:polls-instance',
-            'USER': 'shulya403',
-            'PASSWORD': '1qazxsw2',
-            'NAME': 'polls',
-        },
-        'itr': {
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '/cloudsql/dj-gae-sample:us-central1:ya-price-instance',
             'USER': 'shulya403',
@@ -121,15 +119,16 @@ else:
     #
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     DATABASES = {
+#        'default': {
+#            'ENGINE': 'django.db.backends.mysql',
+#            'HOST': '127.0.0.1',
+#            'PORT': '3308',
+
+#            'NAME': 'polls',
+#            'USER': 'shulya403',
+#            'PASSWORD': '1qazxsw2',
+#        },
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '127.0.0.1',
-            'PORT': '3308',
-            'NAME': 'polls',
-            'USER': 'shulya403',
-            'PASSWORD': '1qazxsw2',
-        },
-        'itr': {
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3307',

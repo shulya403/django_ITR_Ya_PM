@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Прайс-монторинг. Компьютерная техника</title>
+    {% block Scripts_n_over %}{% endblock Scripts_n_over %}
 </head>
+
 <body>
 <table border="1" cellpadding="5" style="border-collapse: collapse; border: #205067">
 <tr> <!-- ШАПКА -->
-    {% block head %}{% endblock %}
+    <td colspan="3">мама казала надеть фапку</td>
+</tr>
+    <tr><th colspan="3"><font face="Arial">СРЕДНИЕ ЦЕНЫ ПО ДАННЫМ YA MARKET</font></th></tr>
+<tr bgcolor="#ffe4c4">
+    <td></td>
+    <td width="300">{% include 'cat_head.html' %}</td>
+    <td>Скромный баннер Bentley Motors</td>
 </tr>
 <tr>
-    <td width="200"> <!-- ЛЕВОЕ МЕНЮ -->
+    <td width="300" valign="top"> <!-- ЛЕВОЕ МЕНЮ -->
         {% block left %}{% endblock %}
     </td>
     <td> <!-- СЕРВИС -->
-    <h1>Средние цены на продукты</h1>
+
         {% block service %}{% endblock %}
     </td>
-    <td width="200"><!-- РЕКЛАМА -->
-        {% block right %}{% endblock %}
+    <td valign="top"><!-- РЕКЛАМА -->
+        {% block right %}
+            <hr>
+            <li>Баннер Tiffany & Co. Jewerly house</li>
+            <hr>
+            <li>Баннер Hennessy Cognac</li>
+            <hr>
+            <li>Нескромный баннер Bentley Motors</li>
+            <hr>
+        {% endblock %}
     </td>
 </tr>
 <tr> <!- ФУТЕР >

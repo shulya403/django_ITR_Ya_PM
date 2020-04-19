@@ -1,0 +1,21 @@
+<table  cellpadding="10"> <!-- ОГЛАВЛЕНИЕ КАТЕГОРИЙ -->
+<tr>
+
+    {% for i, j in Dict_Cat.items %}
+        <td>
+            <a href="/cat/{{ i }}/{{ Fmt }}">{{ j }}</a>
+        </td>
+
+    {% endfor %}
+
+</tr></table>
+<hr>
+
+    <h2>{{ Category }}</h2>
+
+    <table>
+    <tr>
+        <td ><a href="/cat/{{ Cat }}/G">{% if Fmt == 'G' %}<b>{% endif %}^-^ Графично --^{% if Fmt == 'G' %}</b>{% endif %}</a></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cat/{{ Cat }}/T">{% if Fmt == 'T' %}<b>{% endif %}-|- Таблично |--| {% if Fmt == 'T' %}</b>{% endif %}</a></td>
+    </tr>
+    </table>

@@ -122,8 +122,8 @@ class Mnt(models.Model):
     discription = 'Мониторы'
 
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    name = models.CharField(db_column='Name', max_length=200)  # Field name made lowercase.
-    screen_size = models.CharField(db_column='Screen_size', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    name = models.CharField(db_column='Name', unique=True, max_length=200)  # Field name made lowercase.
+    screen_size = models.CharField(db_column='Screen_size', max_length=45, blank=True, null=True, verbose_name=u'Размер экрана')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -135,9 +135,9 @@ class Nb(models.Model):
     discription = 'Ноутбуки'
 
     name = models.CharField(db_column='Name', primary_key=True, max_length=200)  # Field name made lowercase.
-    screen_size = models.CharField(db_column='Screen_size', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    video_conf = models.CharField(db_column='Video_conf', max_length=45, blank=True, null=True)  # Field name made lowercase.
-    clusters_screen_gpu = models.CharField(db_column='Clusters_screen_gpu', max_length=45, blank=True, null=True)  # Field name made lowercase.
+    screen_size = models.CharField(db_column='Screen_size', max_length=45, blank=True, null=True, verbose_name=u'Размер экрана')  # Field name made lowercase.
+    video_conf = models.CharField(db_column='Video_conf', max_length=45, blank=True, null=True, verbose_name=u'Класс GPU')  # Field name made lowercase.
+    clusters_screen_gpu = models.CharField(db_column='Clusters_screen_gpu', max_length=45, blank=True, null=True, verbose_name=u'Кластер экран/GPU')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -157,6 +157,9 @@ class Prices(models.Model):
     vendor = models.CharField(db_column='Vendor', max_length=45, blank=True, null=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=200)  # Field name made lowercase.
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
+
+    #name = models.ForeignKey('Nb', on_delete='DO_NOTHING', to_field='name')
+    #name = models.ForeignKey('Mnt', on_delete='DO_NOTHING', to_field='name')
 
     class Meta:
         managed = False
